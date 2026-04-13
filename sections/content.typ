@@ -11,35 +11,23 @@
 #let halbe_pause_symbol = [𝄼]
 #let viertel_pause_symbol = [𝄽]
 #let achtel_pause_symbol = [𝄾]
-#let punktierte_pause_symbol = [𝄾·]
+#let sechzehntel_pause_symbol = [𝄿]
+#let punktierte_viertel_note_symbol = [𝅘𝅥.]
+#let punktierte_viertel_pause_symbol = [𝄽·]
 
-#let note_table = table(
-  columns: (0.65fr, 1.2fr, 1fr, 1fr),
-  inset: 4pt,
+#let duration_table = table(
+  columns: (auto, auto, auto, auto),
+  inset: 8pt,
   stroke: (x: 0.4pt, y: 0.4pt),
   table.header(
-    [*Aussehen*], [*Notenwert*], [*Zählhilfe*], [*Nächste Note/Pause auf...*],
+    [*Aussehen*], [*Wert*], [*Zählhilfe*], [*Nächste Note auf...*],
   ),
-  [#align(center + horizon, ganze_note_symbol)], [Ganze Note = 2x Halbe oder 4x Viertel], [1 - 2 - 3 - 4], [...1 vom nächsten Takt],
-  [#align(center + horizon, halbe_note_symbol)], [Halbe Note = 2x Viertel], [1 - 2 - 3 - 4], [...3],
-  [#align(center + horizon, viertel_note_symbol)], [Viertelnote = 2x Achtel], [1 - 2 - 3 - 4], [...2],
-  [#align(center + horizon, achtel_note_symbol)], [Achtelnote = 2x Sechzehntel], [1-und 2-und 3-und], [...erstem "und"],
-  [#align(center + horizon, sechzehntel_note_symbol)], [Sechzehntelnote], [1-e-und-a], [...auf "e"],
-  [#align(center + horizon, [𝅘𝅥.])], [Punktierte Viertel; Viertel + Achtel.\ Punkt = +50% des Notenwerts], [1-und 2-und 3-und 4-und], [...zweitem "und"],
-)
-
-#let rest_table = table(
-  columns: (0.65fr, 1.2fr, 0.7fr, 1fr, 1.2fr),
-  inset: 4pt,
-  stroke: (x: 0.4pt, y: 0.4pt),
-  table.header(
-    [*Aussehen*], [*Pausenwert*], [*Zählzeit*], [*Zählen*], [*Wichtig*],
-  ),
-  [#align(center + horizon, ganze_pause_symbol)], [Ganze Pause], [4], [1-2-3-4], [Einsatz rechtzeitig vorbereiten],
-  [#align(center + horizon, halbe_pause_symbol)], [Halbe Pause], [2], [1-2], [Nicht früher einatmen als nötig],
-  [#align(center + horizon, viertel_pause_symbol)], [Viertelpause], [1], [Jeder Puls eine Pause], [Puls innerlich weiterführen],
-  [#align(center + horizon, achtel_pause_symbol)], [Achtelpause], [1/2], ["und" mitzählen], [Kleine Lücke sauber halten],
-  [#align(center + horizon, punktierte_pause_symbol)], [Punktierte Pause], [x1.5], [z. B. 1-und], [Punkt verlängert auch Pausen],
+  [#align(center + horizon, [#ganze_note_symbol / #ganze_pause_symbol])], [Ganze Note = 2x Halbe oder 4x Viertel], [1 - 2 - 3 - 4], [...1 vom nächsten Takt],
+  [#align(center + horizon, [#halbe_note_symbol / #halbe_pause_symbol])], [Halbe Note = 2x Viertel], [1 - 2 - 3 - 4], [...3],
+  [#align(center + horizon, [#viertel_note_symbol / #viertel_pause_symbol])], [Viertelnote = 2x Achtel], [1 - 2 - 3 - 4], [...2],
+  [#align(center + horizon, [#achtel_note_symbol / #achtel_pause_symbol])], [Achtelnote = 2x Sechzehntel], [1-und 2-und 3-und], [...erstem "und"],
+  [#align(center + horizon, [#sechzehntel_note_symbol / #sechzehntel_pause_symbol])], [Sechzehntelnote], [1-e-und-a], [...auf "e"],
+  [#align(center + horizon, [#punktierte_viertel_note_symbol / #punktierte_viertel_pause_symbol])], [Punktierte Viertel;\ Viertel + Achtel.\ Punkt = +50% des Notenwerts], [1-und 2-und 3-und 4-und], [...zweitem "und"],
 )
 
 #let symbols_table = table(
@@ -107,14 +95,8 @@
 
   v(0.3cm)
 
-  section("Notenlängen", "", [
-    #note_table
-    #v(0.25em)
-  ])
-  v(0.3cm)
-
-  section("Pausenlängen", "", [
-    #rest_table
+  section("Noten- und Pausenlängen", "", [
+    #duration_table
   ])
   v(0.3cm)
 
