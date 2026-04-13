@@ -17,81 +17,84 @@
 
 #let duration_table = table(
   columns: (auto, auto, auto, auto),
-  inset: 4pt,
-  stroke: (x: 0.4pt, y: 0.4pt),
+  inset: 4.2pt,
+  stroke: none,
   table.header(
-    [*Aussehen*], [*Wert*], [*Zählhilfe*], [*Nächste Note auf...*],
+    [#th("Aussehen")], [#th("Wert")], [#th("Zählhilfe")], [#th("Nächste Note auf...")],
   ),
+  ..inner-row-dividers(7),
   [#align(center + horizon, [#ganze_note_symbol / #ganze_pause_symbol])], [Ganze Note = 2x Halbe oder 4x Viertel], [1 - 2 - 3 - 4], [...1 vom nächsten Takt],
   [#align(center + horizon, [#halbe_note_symbol / #halbe_pause_symbol])], [Halbe Note = 2x Viertel], [1 - 2 - 3 - 4], [...3],
   [#align(center + horizon, [#viertel_note_symbol / #viertel_pause_symbol])], [Viertelnote = 2x Achtel], [1 - 2 - 3 - 4], [...2],
-  [#align(center + horizon, [#achtel_note_symbol / #achtel_pause_symbol])], [Achtelnote = 2x Sechzehntel], [1-und 2-und 3-und], [...erstem "und"],
-  [#align(center + horizon, [#sechzehntel_note_symbol / #sechzehntel_pause_symbol])], [Sechzehntelnote], [1-e-und-a], [...auf "e"],
-  [#align(center + horizon, [#punktierte_viertel_note_symbol / #punktierte_viertel_pause_symbol])], [Punktierte Viertel;\ Viertel + Achtel.\ Punkt = +50% des Notenwerts], [1-und 2-und 3-und 4-und], [...zweitem "und"],
+  [#align(center + horizon, [#achtel_note_symbol / #achtel_pause_symbol])], [Achtelnote = 2x Sechzehntel], [1-und 2-und...], [...erstem "und"],
+  [#align(center + horizon, [#sechzehntel_note_symbol / #sechzehntel_pause_symbol])], [Sechzehntelnote], [1-e-und-a 2...], [...auf "e"],
+  [#align(center + horizon, [#punktierte_viertel_note_symbol / #punktierte_viertel_pause_symbol])], [Punktierte Viertel;\ Viertel + Achtel.\ Punkt = +50% des Notenwerts], [1-und 2-und...], [...zweitem "und"],
 )
 
 #let symbols_table = table(
-  columns: (3.3cm, 1fr),
-  align: (center, left),
-  inset: 4pt,
-  stroke: (x: 0.4pt, y: 0.4pt),
-  table.header([#align(left)[*Zeichen*]], [#align(left)[*Bedeutung*]]),
-  [#badge("p")], [leise singen],
-  [#badge("f")], [laut singen],
-  [#badge("mf")], [mittel laut],
-  [#badge("mp")], [mittel leise],
-  [#badge("<")], [*Crescendo*: langsam lauter],
-  [#badge(">")], [*Decrescendo/Diminuendo*: langsam leiser],
+  columns: (auto, 1fr),
+  align: (center, left + horizon),
+  inset: 4.2pt,
+  stroke: none,
+  
+  table.header([#th("Symbol")], [#align(left)[#th("Bedeutung")]]),
+  ..inner-row-dividers(15),
+  table.cell(colspan: 2, align: left)[#move(dx: 1.95cm, badge("Dynamik"))],
+  [#badge_plain("p")], [*piano*: leise singen],
+  [#badge_plain("f")], [*forte*: laut singen],
+  [#badge_plain("mf")], [*mezzo-forte*: mittel laut],
+  [#badge_plain("mp")], [*mezzo-piano*: mittel leise],
+  [#badge_plain("<")], [*Crescendo*: lauter werden],
+  [#badge_plain(">")], [*Decrescendo/Diminuendo*: leiser werden],
+  table.cell(colspan: 2, align: left)[#move(dx: 1.95cm, badge("Ausdruck"))],
   [
     #stack(
       dir: ttb,
       spacing: 0.25em,
-      align(center)[#badge("sfz")],
       align(center)[
         #stack(
           dir: ttb,
           spacing: 0pt,
-          text(size: 10pt)[♪],
-          text(size: 8.5pt, weight: "semibold")[>],
+          text(size: 12pt)[♪],
+          text(size: 7pt, weight: "semibold")[>],
         )
       ],
     )
-  ], [plötzlicher starker Akzent],
-  [
-    #stack(
-      dir: ttb,
-      spacing: 0.25em,
-      align(center)[#badge("stacc.")],
-      align(center)[
-        #stack(
-          dir: ttb,
-          spacing: 0pt,
-          align(center)[#text(size: 10pt)[♪]],
-          align(center)[#move(dx: -0.35mm)[#text(size: 3pt, weight: "semibold")[•]]],
-        )
-      ],
-    )
-  ], [kurz und leicht],
+  ], [*sforzando*: plötzlicher starker Akzent],
   [
     #stack(
       dir: ttb,
       spacing: 0em,
-      align(center)[#badge("fermata")],
+      align(center)[
+        #stack(
+          dir: ttb,
+          spacing: 0pt,
+          align(center)[#text(size: 12pt)[♪]],
+          align(center)[#move(dx: -0.35mm)[#text(size: 4pt, weight: "semibold")[•]]],
+        )
+      ],
+    )
+  ], [*staccato*: kurz und leicht],
+  [
+    #stack(
+      dir: ttb,
+      spacing: 0em,
       align(center)[
         #stack(
           dir: ttb,
           spacing: 0.5mm,
-          align(center)[#move(dy: 1.7mm)[#text(size: 9pt, font: "Noto Music")[𝄐]]],
-          align(center)[#text(size: 10pt)[♪]],
+          align(center)[#move(dy: 1.7mm)[#text(size: 11pt, font: "Noto Music")[𝄐]]],
+          align(center)[#text(size: 12pt)[♪]],
         )
       ],
     )
-  ], [Ton/Pause deutlich länger halten (Dirigat beachten)],
-  [#badge("rit.")], [langsamer werden],
-  [#badge("a tempo")], [zurück zum Grundtempo],
+  ], [*Fermate*: Ton/Pause deutlich länger halten (Dirigat beachten)],
+  table.cell(colspan: 2, align: left)[#move(dx: 2.10cm, badge("Tempo"))],
+  [#badge_plain("rit.")], [*ritardando*: langsamer werden],
+  [#badge_plain("a tempo")], [zurück zum Grundtempo],
 )
 
-#let interval_staff(music) = melody(
+#let interval_staff(music) = box(height: 1cm, move(dy: 0.58cm ,melody(
   music: music,
   key: "C",
   time: "4/4",
@@ -99,55 +102,58 @@
   staff-size: 1.35mm,
   width: 2.5cm,
   measures-per-line: 1,
-)
+)))
 
 #let interval_table = table(
   columns: (1.05fr, 4cm, 1.15fr),
-  inset: 4pt,
-  stroke: (x: 0.4pt, y: 0.4pt),
-  table.header([*Intervallname*], [*Noten*], [*Merkhilfe*]),
+  inset: 4.2pt,
+  align: (horizon, horizon, horizon),
+  stroke: none,
+  table.header([#th("Intervallname")], [#th("Noten")], [#th("Merkhilfe")]),
+  ..inner-row-dividers(8),
   [kleine Sekunde], [#interval_staff("c2 d&2 |")], [sehr nah, spannungsreich],
   [große Sekunde],[#interval_staff("c2 d2|")], [Schritt zur Nachbarnote],
   [kleine Terz], [#interval_staff("c2 e&2 |")], [oft "moll"-Farbe],
   [große Terz], [#interval_staff("c2 e2 |")], [oft "dur"-Farbe],
-  [Quarte], [#interval_staff("c2 f2 |")], [stabiler Sprung],
+  [Quarte], [#interval_staff("c2 f2 |")], [stabiler Sprung, _tatü-tata_],
   [Quinte], [#interval_staff("c2 g2 |")], [sehr stabil, offen],
   [Oktave], [#interval_staff("c2 c'2 |")], [gleicher Ton höher oder tiefer],
 )
 
 #let cheat_sheet(body) = {
-  align(center)[
-    #text(size: 16pt, weight: "bold")[Musik-Notationsspickzettel für Chor]
-    #linebreak()
-    #text(size: 11pt, style: "italic")[Für Einsteiger:innen]
-  ]
+  hero(
+    [Musik-Notationsspickzettel],
+    [Popchor der RUB #sym.dash Für Einsteiger:innen],
+  )
 
-  v(0.3cm)
+  v(0.22cm)
 
-  section("Zählrythmen", "", [
+  section("Zählrhythmen", "", [
     #table(
       columns: (auto, auto),
-      stroke: (x: 0.4pt, y: 0.4pt),
-      table.header([*Takte mit...*], [*Rhythmus*]),
+      inset: 4.2pt,
+      stroke: none,
+      table.header([#th("Takte mit...")], [#th("Rhythmus")]),
+      ..inner-row-dividers(4),
       [... Viertelnoten], [1 - 2 - 3 - 4],
       [... Achtelnoten], [1-und 2-und 3-und 4-und],
       [... Sechzehntelnoten], [1-e-und-a 2-e-und-a 3-e-und-a 4-e-und-a]
     )
   ])
 
-  v(0.3cm)
+  v(0.22cm)
 
   section("Noten- und Pausenlängen", "", [
     #duration_table
   ])
-  v(0.3cm)
+  v(0.22cm)
 
-  section("Wichtige musikalische Zeichen", "", [
+  section("Wichtige musikalische Symbole", "", [
     #symbols_table
     #v(0.2em)
   ])
-  pagebreak()
 
+  pagebreak()
   section("Grundintervalle", "", [
     #interval_table
   ])
