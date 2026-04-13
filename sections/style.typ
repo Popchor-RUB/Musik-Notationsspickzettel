@@ -8,13 +8,29 @@
 #set heading(numbering: none)
 
 #let badge(label) = {
-  box(
-    inset: (x: 0.35em, y: 0.15em),
-    stroke: (paint: luma(180), thickness: 0.5pt),
-    radius: 2pt,
-    fill: luma(245),
-    text(size: 8pt, weight: "semibold")[#label],
-  )
+  let is-hairpin = label == "<" or label == ">"
+  if is-hairpin {
+    context {
+      let base = text(size: 9.5pt, weight: "semibold")[#label]
+      let glyph-width = measure(base).width
+      let x-scale = 3cm / glyph-width * 100%
+      box(
+        inset: (x: 0.0em, y: 0.15em),
+        stroke: (paint: luma(180), thickness: 0.5pt),
+        radius: 2pt,
+        fill: luma(245),
+        align(center, scale(x: x-scale, y: 100%, reflow: true, base)),
+      )
+    }
+  } else {
+    box(
+      inset: (x: 0.35em, y: 0.15em),
+      stroke: (paint: luma(180), thickness: 0.5pt),
+      radius: 2pt,
+      fill: luma(245),
+      text(size: 8pt, weight: "semibold")[#label],
+    )
+  }
 }
 
 #let section(title_de, title_en, body) = {

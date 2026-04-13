@@ -31,7 +31,7 @@
 )
 
 #let symbols_table = table(
-  columns: (0.75fr, 1.7fr),
+  columns: (3.3cm, 1fr),
   inset: 4pt,
   stroke: (x: 0.4pt, y: 0.4pt),
   table.header([*Zeichen*], [*Bedeutung*]),
