@@ -7,17 +7,17 @@
 #let achtel_note_symbol = [𝅘𝅥𝅮]
 #let sechzehntel_note_symbol = [𝅘𝅥𝅯]
 
-#let ganze_pause_symbol = [𝄻]
-#let halbe_pause_symbol = [𝄼]
-#let viertel_pause_symbol = [𝄽]
-#let achtel_pause_symbol = [𝄾]
-#let sechzehntel_pause_symbol = [𝄿]
+#let ganze_pause_symbol = box[#move(dy: -0.3mm)[𝄻]]
+#let halbe_pause_symbol = box[#move(dy: -0.3mm)[𝄼]]
+#let viertel_pause_symbol = box[#move(dy: -0.8mm)[𝄽]]
+#let achtel_pause_symbol = box[#move(dy: -0.8mm)[𝄾]]
+#let sechzehntel_pause_symbol = box[#move(dy: -1.5mm)[𝄿]]
 #let punktierte_viertel_note_symbol = [𝅘𝅥.]
-#let punktierte_viertel_pause_symbol = [𝄽·]
+#let punktierte_viertel_pause_symbol = box[#move(dy: -0.8mm)[𝄽·]]
 
 #let duration_table = table(
   columns: (auto, auto, auto, auto),
-  inset: 8pt,
+  inset: 4pt,
   stroke: (x: 0.4pt, y: 0.4pt),
   table.header(
     [*Aussehen*], [*Wert*], [*Zählhilfe*], [*Nächste Note auf...*],
@@ -146,7 +146,7 @@
     #symbols_table
     #v(0.2em)
   ])
-  v(0.3cm)
+  pagebreak()
 
   section("Grundintervalle", "", [
     #interval_table
