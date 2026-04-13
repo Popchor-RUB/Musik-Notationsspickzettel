@@ -11,3 +11,4 @@ Do not create too long files. Create a sensible file structure.
 
 # Visual check
 After changing and compiling the file. Get screenshots of the pages and analyze the visual quality. Fix any overlapping text and other layout issues.
+When you compile the file, use the `fonts` directory as custom font path.

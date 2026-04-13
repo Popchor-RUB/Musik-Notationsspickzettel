@@ -32,19 +32,61 @@
 
 #let symbols_table = table(
   columns: (3.3cm, 1fr),
+  align: (center, left),
   inset: 4pt,
   stroke: (x: 0.4pt, y: 0.4pt),
-  table.header([*Zeichen*], [*Bedeutung*]),
+  table.header([#align(left)[*Zeichen*]], [#align(left)[*Bedeutung*]]),
   [#badge("p")], [leise singen],
   [#badge("f")], [laut singen],
   [#badge("mf")], [mittel laut],
   [#badge("mp")], [mittel leise],
   [#badge("<")], [*Crescendo*: langsam lauter],
   [#badge(">")], [*Decrescendo/Diminuendo*: langsam leiser],
-  [#badge("sfz")], [plötzlicher starker Akzent],
-  [#badge("ten.")], [Ton bewusst tragen],
-  [#badge("stacc.")], [kurz und leicht],
-  [#badge("fermata")], [Ton/Pause deutlich länger halten (Dirigat beachten)],
+  [
+    #stack(
+      dir: ttb,
+      spacing: 0.25em,
+      align(center)[#badge("sfz")],
+      align(center)[
+        #stack(
+          dir: ttb,
+          spacing: 0pt,
+          text(size: 10pt)[♪],
+          text(size: 8.5pt, weight: "semibold")[>],
+        )
+      ],
+    )
+  ], [plötzlicher starker Akzent],
+  [
+    #stack(
+      dir: ttb,
+      spacing: 0.25em,
+      align(center)[#badge("stacc.")],
+      align(center)[
+        #stack(
+          dir: ttb,
+          spacing: 0pt,
+          align(center)[#text(size: 10pt)[♪]],
+          align(center)[#move(dx: -0.35mm)[#text(size: 3pt, weight: "semibold")[•]]],
+        )
+      ],
+    )
+  ], [kurz und leicht],
+  [
+    #stack(
+      dir: ttb,
+      spacing: 0em,
+      align(center)[#badge("fermata")],
+      align(center)[
+        #stack(
+          dir: ttb,
+          spacing: 0.5mm,
+          align(center)[#move(dy: 1.7mm)[#text(size: 9pt, font: "Noto Music")[𝄐]]],
+          align(center)[#text(size: 10pt)[♪]],
+        )
+      ],
+    )
+  ], [Ton/Pause deutlich länger halten (Dirigat beachten)],
   [#badge("rit.")], [langsamer werden],
   [#badge("a tempo")], [zurück zum Grundtempo],
 )
