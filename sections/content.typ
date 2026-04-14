@@ -57,15 +57,17 @@
   stroke: none,
   
   table.header([#th("Symbol")], [#align(left)[#th("Bedeutung")]]),
-  ..inner-row-dividers(20),
-  table.cell(colspan: 2, align: left)[#move(dx: 1.95cm, badge("Dynamik"))],
+  ..range(1, 20)
+    .filter(y => not (2, 9, 14, 17).contains(y))
+    .map(y => table.hline(y: y, stroke: (paint: line-soft, thickness: 0.55pt))),
+  table.cell(colspan: 2, align: left, stroke: none)[#v(0.3cm)#move(dx: 1.95cm, badge("Dynamik"))],
   [#badge_plain("p")], [*piano*: leise singen],
   [#badge_plain("f")], [*forte*: laut singen],
   [#badge_plain("mf")], [*mezzo-forte*: mittel laut],
   [#badge_plain("mp")], [*mezzo-piano*: mittel leise],
   [#badge_plain("<")], [*Crescendo*: lauter werden],
   [#badge_plain(">")], [*Decrescendo/Diminuendo*: leiser werden],
-  table.cell(colspan: 2, align: left)[#move(dx: 1.95cm, badge("Ausdruck"))],
+  table.cell(colspan: 2, align: left, stroke: none)[#v(0.4cm)#move(dx: 1.95cm, badge("Ausdruck"))],
   [
     #stack(
       dir: ttb,
@@ -109,11 +111,11 @@
     )
   ], [*Fermate*: Ton/Pause deutlich länger halten (Dirigat beachten)],
   [#box[#move(dy: 3mm, bindebogen_symbol)]], [*Bindebogen*: Verbindet zwei unterschiedlich hohe Noten. Kein Haltebogen. Es sind zwei Noten, die verbunden werden (nicht atmen).],
-  table.cell(colspan: 2, align: left)[#move(dx: 2.10cm, badge("Tempo"))],
+  table.cell(colspan: 2, align: left, stroke: none)[#v(0.4cm)#move(dx: 2.10cm, badge("Tempo"))],
   [#badge_plain("rit.")], [*ritardando*: langsamer werden],
   [#badge_plain("a tempo")], [zurück zum Grundtempo],
-  table.cell(colspan: 2, align: left)[#move(dx: 1.55cm, badge("Wiederholungen"))],
-  table.cell(align: center + horizon)[#wiederholung_start_symbol #h(1.0em) + #h(1.0em) #wiederholung_ende_symbol], [*Wiederholungspaar*: #inline_music_symbol(wiederholung_start_symbol) = Start und #inline_music_symbol(wiederholung_ende_symbol) = Ende. Bei #inline_music_symbol(wiederholung_ende_symbol) zurück zum letzten #inline_music_symbol(wiederholung_start_symbol) (ohne Startzeichen: zum Anfang)],
+  table.cell(colspan: 2, align: left, stroke: none)[#v(0.5cm)#move(dx: 1.55cm, badge("Wiederholungen"))],
+  table.cell(align: center + horizon)[#wiederholung_start_symbol #h(1.0em) + #h(1.0em) #wiederholung_ende_symbol], table.cell(inset: (top: 7pt, bottom: 7pt), [*Wiederholungspaar*: #inline_music_symbol(wiederholung_start_symbol) = Start und #inline_music_symbol(wiederholung_ende_symbol) = Ende. Bei #inline_music_symbol(wiederholung_ende_symbol) zurück zum letzten #inline_music_symbol(wiederholung_start_symbol) (ohne Startzeichen: zum Anfang)]),
   table.cell(align: center + horizon)[#segno_symbol #h(1.0em) + #h(1.0em) #badge_plain("D.S.")], [*Segno & Dal Segno*: _D.S._ bedeutet Sprung zum Segno-Zeichen #inline_music_symbol(segno_symbol). Ab dort weitersingen bis _Fine_ / Ende oder bis zur Coda-Anweisung.],
   table.cell(align: center + horizon)[#coda_symbol], [*Coda*: Start/Zielzeichen #coda_symbol für den Schlussteil.\ Alternativer Start:~_al~Coda_ / _To Coda_.\ Von Start zu Ziel springen, aber nur in einer _D.S._ / #inline_music_symbol(segno_symbol) Wiederholung.],
 )
