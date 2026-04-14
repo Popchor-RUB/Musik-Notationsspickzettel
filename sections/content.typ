@@ -52,9 +52,9 @@
   [#align(center + horizon, [#halbe_note_symbol / #halbe_pause_symbol])], [Halbe Note], [2 = 2x Viertel], [1 - 2 - 3 - 4], [...3],
   [#align(center + horizon, [#viertel_note_symbol / #viertel_pause_symbol])], [Viertelnote], [1 = 2x Achtel], [1 - 2 - 3 - 4], [...2],
   [#align(center + horizon, [#box([#move(dy: -0.6mm, [#achtel_note_symbol#h(0.5mm)/#achtel_beam/#h(0.5mm)#achtel_pause_symbol])])])], [Achtelnote], [0,5 = 2x Sechzehntel], [1-und 2-und...], [...erstem "und"],
-  [#align(center + horizon, [#box([#move(dy: -0.6mm, [#sechzehntel_note_symbol#h(0.5mm)/#sechzehntel_beam/#h(0.5mm)#sechzehntel_pause_symbol])])])], [Sechzehntel], [0,25], [1-e-und-a 2...], [...auf "e"],
+  [#align(center + horizon, [#box([#move(dy: -0.6mm, [#sechzehntel_note_symbol#h(0.5mm)/#sechzehntel_beam/#h(0.5mm)#sechzehntel_pause_symbol])])])], [Sechzehntel], [0,25], [1-e-und-a 2...], [..."e"],
   [#align(center + horizon, [#box([#punktierte_viertel_note_symbol#h(0.6mm)/#punktierte_bindung_symbol/#h(0.6mm)#punktierte_viertel_pause_symbol])])], [Punktierte\ Viertel], [1,5 = Viertel + Achtel\ Punkt = +50% des Notenwerts], [1-und 2-und...], [...zweitem "und"],
-  [#align(center + horizon, [#triole_note_symbol])], [Achteltriole], [1/3 (3 in der Zeit von 2 Achteln)], [1-trip-let 2-trip-let...], [...auf 2],
+  [#align(center + horizon, [#triole_note_symbol])], [Achteltriole], [1/3 (3 in der Zeit von 2 Achteln)], [1-trip-let 2-trip-let...], [...2],
 )
 
 #let symbols_table = table(
