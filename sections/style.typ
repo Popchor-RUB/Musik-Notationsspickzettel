@@ -12,11 +12,6 @@
 #let radius-card = 11pt
 #let radius-pill = 999pt
 
-#set page(
-  paper: "a4",
-  margin: (x: 1.15cm, y: 1.0cm),
-  fill: bg-page,
-)
 
 #set text(
   font: ("Libertinus Serif", "New Computer Modern", "Noto Music"),
