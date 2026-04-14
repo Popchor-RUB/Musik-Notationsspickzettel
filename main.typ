@@ -7,4 +7,6 @@
   margin: (y: 2cm),
 )
 
+#set math.frac(style: "skewed")
+
 #show: cheat_sheet
