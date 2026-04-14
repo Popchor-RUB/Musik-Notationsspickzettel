@@ -13,14 +13,6 @@
 #let radius-pill = 999pt
 
 
-#set text(
-  font: ("Libertinus Serif", "New Computer Modern", "Noto Music"),
-  size: 9pt,
-  fill: fg-main,
-)
-#set par(justify: false, leading: 0.5em)
-#set heading(numbering: none)
-
 #let hero(title, subtitle) = block(
   inset: (x: 2pt, y: 1pt),
 )[
