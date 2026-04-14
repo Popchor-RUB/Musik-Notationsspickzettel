@@ -15,6 +15,18 @@
 #let punktierte_viertel_note_symbol = box[#move(dy: -0.5mm, [𝅘𝅥#h(0.3mm).])]
 #let punktierte_viertel_pause_symbol = box[#move(dy: -1.3mm)[𝄽·]]
 #let punktierte_bindung_symbol = text(size: 12pt, font: ("Noto Music", "Libertinus Serif"))[𝅘𝅥‿𝅘𝅥𝅮]
+#let bindebogen_symbol = stack(
+  dir: ltr,
+  spacing: -0.7em,
+  text(size: 9pt, font: "Noto Music")[𝅘𝅥],
+  move(dy: -0.80mm, dx: 0.3mm, rotate(20deg, text(size: 10pt, font: "Noto Music")[‿])),
+  move(dy: -0.8mm, dx: -0.2mm, text(size: 9pt, font: "Noto Music")[𝅘𝅥]),
+)
+#let wiederholung_start_symbol = box[#move(dy: 1mm, text(size: 12pt, font: "Noto Music")[𝄆])]
+#let wiederholung_ende_symbol = box[#move(dy: 1mm, text(size: 12pt, font: "Noto Music")[𝄇])]
+#let segno_symbol = box[#move(dy: 1mm, text(size: 12pt, font: "Noto Music")[𝄋])]
+#let coda_symbol = box[#move(dy: 1.8mm, text(size: 18pt, font: "Noto Music")[𝄌])]
+#let inline_music_symbol(symbol) = box[#symbol]
 
 
 #let achtel_beam = text(size: 19pt, font: "Noto Music")[♫]
@@ -41,11 +53,11 @@
 #let symbols_table = table(
   columns: (auto, 1fr),
   align: (center, left + horizon),
-  inset: 4.2pt,
+  inset: 5pt,
   stroke: none,
   
   table.header([#th("Symbol")], [#align(left)[#th("Bedeutung")]]),
-  ..inner-row-dividers(15),
+  ..inner-row-dividers(20),
   table.cell(colspan: 2, align: left)[#move(dx: 1.95cm, badge("Dynamik"))],
   [#badge_plain("p")], [*piano*: leise singen],
   [#badge_plain("f")], [*forte*: laut singen],
@@ -96,9 +108,14 @@
       ],
     )
   ], [*Fermate*: Ton/Pause deutlich länger halten (Dirigat beachten)],
+  [#box[#move(dy: 3mm, bindebogen_symbol)]], [*Bindebogen*: Verbindet zwei unterschiedlich hohe Noten. Kein Haltebogen. Es sind zwei Noten, die verbunden werden (nicht atmen).],
   table.cell(colspan: 2, align: left)[#move(dx: 2.10cm, badge("Tempo"))],
   [#badge_plain("rit.")], [*ritardando*: langsamer werden],
   [#badge_plain("a tempo")], [zurück zum Grundtempo],
+  table.cell(colspan: 2, align: left)[#move(dx: 1.55cm, badge("Wiederholungen"))],
+  table.cell(align: center + horizon)[#wiederholung_start_symbol #h(1.0em) + #h(1.0em) #wiederholung_ende_symbol], [*Wiederholungspaar*: #inline_music_symbol(wiederholung_start_symbol) = Start und #inline_music_symbol(wiederholung_ende_symbol) = Ende. Bei #inline_music_symbol(wiederholung_ende_symbol) zurück zum letzten #inline_music_symbol(wiederholung_start_symbol) (ohne Startzeichen: zum Anfang)],
+  table.cell(align: center + horizon)[#segno_symbol #h(1.0em) + #h(1.0em) #badge_plain("D.S.")], [*Segno & Dal Segno*: _D.S._ bedeutet Sprung zum Segno-Zeichen #inline_music_symbol(segno_symbol). Ab dort weitersingen bis _Fine_ / Ende oder bis zur Coda-Anweisung.],
+  table.cell(align: center + horizon)[#coda_symbol], [*Coda*: Start/Zielzeichen #coda_symbol für den Schlussteil.\ Alternativer Start:~_al~Coda_ / _To Coda_.\ Von Start zu Ziel springen, aber nur in einer _D.S._ / #inline_music_symbol(segno_symbol) Wiederholung.],
 )
 
 #let interval_staff(music) = box(height: 1cm, move(dy: 0.58cm ,melody(
@@ -135,6 +152,13 @@
 
   v(0.22cm)
 
+  section("Wichtige musikalische Symbole", "", [
+    #symbols_table
+    #v(0.2em)
+  ])
+  
+  pagebreak()
+
   section("Zählrhythmen", "", [
     #table(
       columns: (auto, auto),
@@ -147,7 +171,6 @@
       [... Sechzehntelnoten], [1-e-und-a 2-e-und-a 3-e-und-a 4-e-und-a]
     )
   ])
-
   v(0.22cm)
 
   section("Noten- und Pausenlängen", "", [
@@ -155,12 +178,6 @@
   ])
   v(0.22cm)
 
-  section("Wichtige musikalische Symbole", "", [
-    #symbols_table
-    #v(0.2em)
-  ])
-
-  pagebreak()
   section("Grundintervalle", "", [
     #interval_table
   ])
