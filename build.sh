@@ -32,7 +32,24 @@ download_if_missing "$NOTO_PATH" "$NOTO_URL"
 
 INPUT_FILE="${1:-$ROOT_DIR/main.typ}"
 OUTPUT_FILE="${2:-$ROOT_DIR/main.pdf}"
+PREVIEW_DIR="${ROOT_DIR}/preview"
+PREVIEW_PREFIX="${PREVIEW_DIR}/main"
 
 echo "Compiling $(basename "$INPUT_FILE") -> $(basename "$OUTPUT_FILE")..."
 typst compile --font-path "$FONT_DIR" "$INPUT_FILE" "$OUTPUT_FILE"
+
+mkdir -p "$PREVIEW_DIR"
+rm -f "${PREVIEW_PREFIX}"-*.png
+
+if command -v pdftoppm >/dev/null 2>&1; then
+  echo "Exporting preview images to $(basename "$PREVIEW_DIR")/ (pdftoppm)..."
+  pdftoppm -png "$OUTPUT_FILE" "$PREVIEW_PREFIX"
+elif command -v magick >/dev/null 2>&1; then
+  echo "Exporting preview images to $(basename "$PREVIEW_DIR")/ (ImageMagick)..."
+  magick -density 180 "$OUTPUT_FILE" "${PREVIEW_PREFIX}-%d.png"
+else
+  echo "Warning: No PDF-to-image tool found (need pdftoppm or ImageMagick)." >&2
+  echo "Warning: Skipping preview image export." >&2
+fi
+
 echo "Done."

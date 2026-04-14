@@ -10,5 +10,4 @@ Create additional files that are imported or included into the `main.typ` whenev
 Do not create too long files. Create a sensible file structure.
 
 # Visual check
-After changing and compiling the file. Get screenshots of the pages and analyze the visual quality. Fix any overlapping text and other layout issues.
-When you compile the file, use the `build.sh` script.
+After changing and compiling the file. When you compile the file, use the `build.sh` script. Screenshots of the PDF are in the `preview/` folder. Analyze the screenshots of the pages and evaluate the visual output. Check if your the visual result fits to your task. Fix any overlapping text or layout issues.
