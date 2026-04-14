@@ -4,31 +4,37 @@
 #let ganze_note_symbol = [𝅝]
 #let halbe_note_symbol = [𝅗𝅥]
 #let viertel_note_symbol = [𝅘𝅥]
-#let achtel_note_symbol = [𝅘𝅥𝅮]
-#let sechzehntel_note_symbol = [𝅘𝅥𝅯]
+#let achtel_note_symbol = box[#move(dy: -0.4mm)[𝅘𝅥𝅮]]
+#let sechzehntel_note_symbol = box[#move(dy: -0.4mm)[𝅘𝅥𝅯]]
 
 #let ganze_pause_symbol = box[#move(dy: -0.3mm)[𝄻]]
 #let halbe_pause_symbol = box[#move(dy: -0.3mm)[𝄼]]
 #let viertel_pause_symbol = box[#move(dy: -0.8mm)[𝄽]]
 #let achtel_pause_symbol = box[#move(dy: -0.8mm)[𝄾]]
 #let sechzehntel_pause_symbol = box[#move(dy: -1.5mm)[𝄿]]
-#let punktierte_viertel_note_symbol = [𝅘𝅥.]
+#let punktierte_viertel_note_symbol = box[𝅘𝅥#h(0.3mm).]
 #let punktierte_viertel_pause_symbol = box[#move(dy: -0.8mm)[𝄽·]]
 
+
+#let achtel_beam = text(size: 19pt, font: "Noto Music")[♫]
+#let sechzehntel_beam = text(size: 19pt, font: "Noto Music")[♬]
+
+
 #let duration_table = table(
-  columns: (auto, auto, auto, auto),
+  columns: (auto, auto, auto, auto, auto),
   inset: 4.2pt,
   stroke: none,
+  align: horizon,
   table.header(
-    [#th("Aussehen")], [#th("Wert")], [#th("Zählhilfe")], [#th("Nächste Note auf...")],
+    [#th("Aussehen")], [#th("Name")], [#th("Wert (Schläge)")], [#th("Zählhilfe")], [#th("Nächste Note auf...")],
   ),
   ..inner-row-dividers(7),
-  [#align(center + horizon, [#ganze_note_symbol / #ganze_pause_symbol])], [Ganze Note = 2x Halbe oder 4x Viertel], [1 - 2 - 3 - 4], [...1 vom nächsten Takt],
-  [#align(center + horizon, [#halbe_note_symbol / #halbe_pause_symbol])], [Halbe Note = 2x Viertel], [1 - 2 - 3 - 4], [...3],
-  [#align(center + horizon, [#viertel_note_symbol / #viertel_pause_symbol])], [Viertelnote = 2x Achtel], [1 - 2 - 3 - 4], [...2],
-  [#align(center + horizon, [#achtel_note_symbol / #achtel_pause_symbol])], [Achtelnote = 2x Sechzehntel], [1-und 2-und...], [...erstem "und"],
-  [#align(center + horizon, [#sechzehntel_note_symbol / #sechzehntel_pause_symbol])], [Sechzehntelnote], [1-e-und-a 2...], [...auf "e"],
-  [#align(center + horizon, [#punktierte_viertel_note_symbol / #punktierte_viertel_pause_symbol])], [Punktierte Viertel;\ Viertel + Achtel.\ Punkt = +50% des Notenwerts], [1-und 2-und...], [...zweitem "und"],
+  [#align(center + horizon, [#ganze_note_symbol / #ganze_pause_symbol])], [Ganze Note], [4 = 2x Halbe oder\ 4x Viertel], [1 - 2 - 3 - 4], [...1 vom nächsten Takt],
+  [#align(center + horizon, [#halbe_note_symbol / #halbe_pause_symbol])], [Halbe Note], [2 = 2x Viertel], [1 - 2 - 3 - 4], [...3],
+  [#align(center + horizon, [#viertel_note_symbol / #viertel_pause_symbol])], [Viertelnote], [1 = 2x Achtel], [1 - 2 - 3 - 4], [...2],
+  [#align(center + horizon, [#box([#move(dy: -0.6mm, [#achtel_note_symbol#h(0.5mm)/#achtel_beam/#h(0.5mm)#achtel_pause_symbol])])])], [Achtelnote], [0,25 = 2x Sechzehntel], [1-und 2-und...], [...erstem "und"],
+  [#align(center + horizon, [#box([#move(dy: -0.6mm, [#sechzehntel_note_symbol#h(0.5mm)/#sechzehntel_beam/#h(0.5mm)#sechzehntel_pause_symbol])])])], [Sechzehntel], [0,125], [1-e-und-a 2...], [...auf "e"],
+  [#align(center + horizon, [#punktierte_viertel_note_symbol / #punktierte_viertel_pause_symbol])], [Punktierte\ Viertel], [1,5 = Viertel + Achtel\ Punkt = +50% des Notenwerts], [1-und 2-und...], [...zweitem "und"],
 )
 
 #let symbols_table = table(
